@@ -1,1 +1,23 @@
-<p>to-do-list works!</p>
+<h2>Cadastrar Tarefas</h2>
+<div>
+  <input type="text" #newTaskInput placeholder="Digite uma nova tarefa">
+</div>
+<p></p>
+<div>
+  <button (click)="addTasks(newTaskInput.value); newTaskInput.value = ''">
+    Adicionar Tarefa
+  </button>
+</div>
+
+<hr> <!-- Uma linha horizontal para separar visualmente -->
+
+<h2>Lista de Tarefas</h2>
+@if (task().length > 0) {
+  <ul>
+    @for (task of task(); track task; let i = $index) {
+      <li>{{ i + 1 }}. {{ task }}</li>
+    }
+  </ul>
+} @else {
+  <p>Nenhuma tarefa na lista ainda. Que tal adicionar uma?</p>
+}

@@ -11,11 +11,14 @@ export class ToDoList {
 
   public task = signal<string[]>([]);
 
-  public tasks (newTaskTittle: string):void{
-    if (newTaskTittle.trim())
+  // Sugestão: renomear para addTask (singular) para consistência com 'task'
+  // e corrigir o parâmetro para newTaskTitle (singular 't')
+  public addTasks (newTaskTittle: string):void{
+    const trimmedTitle = newTaskTittle.trim(); // Boa prática: trim antes de usar
+    if (trimmedTitle)
     {
-      this.task.update(currentTasks => [...currentTasks, newTaskTittle]);
+      // Corrigido: chama .update() no signal 'task'
+      this.task.update(currentTasks => [...currentTasks, trimmedTitle]);
     }
   }
 }
-
